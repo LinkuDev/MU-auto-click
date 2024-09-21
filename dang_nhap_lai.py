@@ -30,11 +30,22 @@ def exit_and_restart_game(window):
     except Exception as e:
         log(f"Lỗi khi thoát game trên cửa sổ '{window.title}': {e}")
 
+def get_matching_windows(titles):
+    matching_windows = []
+    for title in titles:
+        windows = gw.getWindowsWithTitle(title)
+        matching_windows.extend(windows)  # Thêm tất cả các cửa sổ phù hợp vào danh sách
+    return matching_windows
 
 def main():
     try:
         # Bước 1: Đăng nhập và bắt đầu auto_play cho tất cả cửa sổ game
-        windows = gw.getWindowsWithTitle("MuBaChu.Com - Season 6")
+        window_titles = ['MuBaChu.Com - Season 6',
+                          'MuBaoChua.Com - Season 6', 
+                          'MuBaoChau.Com - Season 6', 
+                          'MuCuuLong.Com - Season 6']
+        windows = get_matching_windows(window_titles)
+
         if not windows:
             log("Không tìm thấy cửa sổ có tiêu đề 'MuBaChu.Com - Season 6'. Đang đợi 5 giây trước khi thử lại.")
             time.sleep(5)
