@@ -54,7 +54,7 @@ def login_and_start_game(window, user_id, password, server_index):
         # Kích hoạt cửa sổ game
         window.activate()
         log(f"Kích hoạt cửa sổ: {window.title}")
-        time.sleep(0.5)
+        time.sleep(2)
 
         # 1. Click vào nút host_name
         log("Click vào nút host_name")
