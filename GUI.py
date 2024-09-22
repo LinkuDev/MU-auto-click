@@ -6,6 +6,7 @@ from tkinter import Tk, Button, Label, Text
 from utils import read_accounts, custom_click, custom_double_click, log
 from constants import *
 from pynput import keyboard
+import os
 
 pause_flag = False
 is_login_running = False
@@ -28,6 +29,11 @@ def get_window_titles_from_text(text_widget):
     # Lấy nội dung từ text area và tách từng dòng
     window_titles = text_widget.get("1.0", "end-1c").splitlines()
     return [title.strip() for title in window_titles if title.strip()]
+
+def get_file_from_window_title(window_title):
+    # Bỏ chữ 'Mu' và lấy phần còn lại của tên cửa sổ
+    file_part = window_title.replace("Mu", "").split(".")[0].lower()  # "MuBaChu.Com - Season 6" -> "bachu"
+    return f"{file_part}.txt"
 
 def login_and_start_game(window, user_id, password, server_index):
     if pause_flag:
@@ -121,19 +127,26 @@ def start_login(window_titles):
 
     is_login_running = True
     server_index = 0
-    accounts = read_accounts('input.txt')
     windows = [gw.getWindowsWithTitle(title)[0] for title in window_titles if gw.getWindowsWithTitle(title)]
 
-    if len(accounts) < len(windows):
-        log("Số lượng tài khoản ít hơn số lượng cửa sổ, một số cửa sổ sẽ không được xử lý.")
-        windows = windows[:len(accounts)]
-    log("Tổng cửa sổ game: " . len(windows))    
-    for i, window in enumerate(windows):
+    log(f"Tổng cửa sổ game: {len(windows)}")
+    
+    for window in windows:
         if not pause_flag:
-            account = accounts[i]
-            user_id, password = account.split('/')
-            login_and_start_game(window, user_id, password, server_index)
-            server_index = (server_index + 1) % len(array_position_server)
+            # Lấy file tài khoản tương ứng với cửa sổ
+            file_name = get_file_from_window_title(window.title)
+            log(f"Lấy tài khoản từ file: {file_name}")
+
+            if not os.path.exists(file_name):
+                log(f"File {file_name} không tồn tại. Bỏ qua cửa sổ này.")
+                continue
+
+            accounts = read_accounts(file_name)
+
+            for account in accounts:
+                user_id, password = account.split('/')
+                login_and_start_game(window, user_id, password, server_index)
+                server_index = (server_index + 1) % len(array_position_server)
 
     is_login_running = False
 
@@ -169,7 +182,8 @@ def create_gui():
     # Text area để nhập tên các cửa sổ
     window_text_area = Text(root, height=10, width=50)
     window_text_area.pack(pady=10)
-
+    window_text_area.insert("1.0", "MuBaChu.Com - Season 6\nMuDangCap.Com - Season 6")
+    
     # Nút Start Đăng nhập hàng loạt
     start_login_button = Button(root, text="Start Đăng nhập hàng loạt", command=lambda: start_login_thread(get_window_titles_from_text(window_text_area)))
     start_login_button.pack(pady=10)
