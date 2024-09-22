@@ -104,7 +104,7 @@ def main():
             login_and_start_game(window, user_id, password, server_index)
             server_index = (server_index + 1) % len(array_position_server)
         
-        # Đợi 30 giây, e đang setup lại 20s, cái này sau a sẽ chỉnh lại thành 4 tiếng, đợi game sẵn sàng. mình nhấn terminal, gõ python
+        # Đợi 30 giây, e đang setup lại 20s, cái này sau a sẽ chỉnh lại thành 4 tiếng, đợi game sẵn sàng. mình nh
         time.sleep(20)
 
         # Bước 2: Sau 30 giây, thoát game và khởi động lại auto_play cho tất cả cửa sổ
