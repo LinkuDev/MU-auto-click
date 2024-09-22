@@ -153,7 +153,7 @@ def start_login(window_titles):
 
     log(f"Tổng cửa sổ game: {len(windows)}")
     
-    for window in windows:
+    for index, window in enumerate(windows):
         if not pause_flag:
             # Lấy file tài khoản tương ứng với cửa sổ
             file_name = get_file_from_window_title(window.title)
@@ -163,12 +163,19 @@ def start_login(window_titles):
                 log(f"File {file_name} không tồn tại. Bỏ qua cửa sổ này.")
                 continue
 
+            # Đọc tất cả các tài khoản từ file
             accounts = read_accounts(file_name)
 
-            for account in accounts:
+            # Đảm bảo có đủ tài khoản cho màn hình tương ứng
+            if index < len(accounts):
+                # Lấy tài khoản tương ứng với index của cửa sổ
+                account = accounts[index].strip()
                 user_id, password = account.split('/')
                 login_and_start_game(window, user_id, password, server_index)
-                server_index = (server_index + 1) % len(array_position_server)
+                log(f"Đã đăng nhập vào cửa sổ: {window.title} với tài khoản: {user_id}")
+            else:
+                log(f"Không có đủ tài khoản cho cửa sổ: {window.title}")
+
 
     is_login_running = False
 
