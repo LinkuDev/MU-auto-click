@@ -19,7 +19,7 @@ def custom_click(window, rel_x, rel_y):
     # Thực hiện thao tác click
     pydirectinput.moveTo(abs_x, abs_y)
     pydirectinput.mouseDown()
-    time.sleep(0.02) 
+    time.sleep(0.5) 
     pydirectinput.mouseUp()
 
 # Hàm double click với tọa độ tương đối so với cửa sổ
@@ -33,15 +33,15 @@ def custom_double_click(window, rel_x, rel_y):
 
     # Thực hiện thao tác double click
     pydirectinput.mouseDown()
-    time.sleep(0.02)  # Thời gian giữ chuột
+    time.sleep(0.5)  # Thời gian giữ chuột
     pydirectinput.mouseUp()
 
     # Thời gian chờ giữa hai lần click
-    time.sleep(0.1)  
+    time.sleep(0.3)  
 
     # Click thứ hai
     pydirectinput.mouseDown()
-    time.sleep(0.02)  # Thời gian giữ chuột
+    time.sleep(0.5)  # Thời gian giữ chuột
     pydirectinput.mouseUp()
 
 # Hàm log để in ra console log
