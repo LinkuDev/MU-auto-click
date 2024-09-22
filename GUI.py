@@ -127,7 +127,7 @@ def start_login(window_titles):
     if len(accounts) < len(windows):
         log("Số lượng tài khoản ít hơn số lượng cửa sổ, một số cửa sổ sẽ không được xử lý.")
         windows = windows[:len(accounts)]
-
+    log("Tổng cửa sổ game: " . len(windows))    
     for i, window in enumerate(windows):
         if not pause_flag:
             account = accounts[i]
