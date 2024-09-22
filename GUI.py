@@ -63,6 +63,7 @@ def login_and_start_game(window, user_id, password, server_index):
         # 2. Click vào server
         log(f"Chọn server: {server_index + 1}")
         custom_click(window, *array_position_server[server_index])
+        time.sleep(1)
         custom_click(window, *array_position_server[server_index])
         time.sleep(3)
 
@@ -84,6 +85,7 @@ def login_and_start_game(window, user_id, password, server_index):
         # 5. Chọn nhân vật
         log("Double click chọn nhân vật")
         custom_double_click(window, *position_choose_nhan_vat)
+        time.sleep(1)
         custom_double_click(window, *position_choose_nhan_vat)
 
         time.sleep(4)
