@@ -83,8 +83,9 @@ def login_and_start_game(window, user_id, password, server_index):
         # 5. Chọn nhân vật
         log("Double click chọn nhân vật")
         custom_double_click(window, *position_choose_nhan_vat)
-
-        time.sleep(1)
+        custom_double_click(window, *position_choose_nhan_vat)
+        
+        time.sleep(4)
         # 6. Click vào auto_play
         log("Click vào auto_play")
         custom_click(window, *position_auto_play)
