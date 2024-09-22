@@ -155,7 +155,10 @@ def start_login(window_titles):
 
     log(f"Tổng cửa sổ game: {len(windows)}")
     
-    for index, window in enumerate(windows):
+    # Tạo từ điển để theo dõi biến đếm của từng file tài khoản
+    account_indices = {}
+
+    for window in windows:
         if not pause_flag:
             # Lấy file tài khoản tương ứng với cửa sổ
             file_name = get_file_from_window_title(window.title)
@@ -168,15 +171,28 @@ def start_login(window_titles):
             # Đọc tất cả các tài khoản từ file
             accounts = read_accounts(file_name)
 
-            # Đảm bảo có đủ tài khoản cho màn hình tương ứng
-            if index < len(accounts):
-                # Lấy tài khoản tương ứng với index của cửa sổ
-                account = accounts[index].strip()
+            # Khởi tạo biến đếm nếu chưa có trong từ điển
+            if file_name not in account_indices:
+                account_indices[file_name] = 0
+
+            # Lấy vị trí index cho file tương ứng từ từ điển
+            account_index = account_indices[file_name]
+
+            # Kiểm tra xem index có hợp lệ không (đảm bảo không vượt quá số lượng tài khoản)
+            if account_index < len(accounts):
+                # Lấy tài khoản tương ứng với account_index
+                account = accounts[account_index].strip()
                 user_id, password = account.split('/')
+                
+                # Đăng nhập vào game
                 login_and_start_game(window, user_id, password, server_index)
                 log(f"Đã đăng nhập vào cửa sổ: {window.title} với tài khoản: {user_id}")
+
+                # Tăng biến đếm cho file tương ứng
+                account_indices[file_name] += 1
             else:
-                log(f"Không có đủ tài khoản cho cửa sổ: {window.title}")
+                log(f"Không có đủ tài khoản trong file {file_name} cho cửa sổ: {window.title}")
+
 
 
     is_login_running = False
