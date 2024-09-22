@@ -190,6 +190,8 @@ def start_login(window_titles):
 
                 # Tăng biến đếm cho file tương ứng
                 account_indices[file_name] += 1
+                time.sleep(2)
+
             else:
                 log(f"Không có đủ tài khoản trong file {file_name} cho cửa sổ: {window.title}")
 
