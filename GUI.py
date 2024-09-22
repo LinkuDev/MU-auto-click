@@ -63,19 +63,20 @@ def login_and_start_game(window, user_id, password, server_index):
         # 2. Click vào server
         log(f"Chọn server: {server_index + 1}")
         custom_click(window, *array_position_server[server_index])
-        time.sleep(1)
+        custom_click(window, *array_position_server[server_index])
+        time.sleep(3)
 
         # 3. Nhập ID
         log("Click vào nút ID")
         custom_click(window, *position_button_id)
-        time.sleep(0.5)
+        time.sleep(1)
         pydirectinput.write(user_id)
         time.sleep(1)
 
         # 4. Nhập password
         log("Click vào nút Password")
         custom_click(window, *position_button_password)
-        time.sleep(0.5)
+        time.sleep(1)
         pydirectinput.write(password)
         pydirectinput.press('enter')
 
@@ -84,7 +85,7 @@ def login_and_start_game(window, user_id, password, server_index):
         log("Double click chọn nhân vật")
         custom_double_click(window, *position_choose_nhan_vat)
         custom_double_click(window, *position_choose_nhan_vat)
-        
+
         time.sleep(4)
         # 6. Click vào auto_play
         log("Click vào auto_play")
@@ -228,7 +229,7 @@ def create_gui():
     # Text area để nhập tên các cửa sổ
     window_text_area = Text(root, height=7, width=50)
     window_text_area.grid(row=1, column=0, padx=5, pady=5, sticky='ew', columnspan=2)  # Kéo dài qua hai cột
-    window_text_area.insert("1.0", "MuBaChu.Com - Season 6\nMuDangCap.Com - Season 6")
+    window_text_area.insert("1.0", "MuBaChu.Com - Season 6\nMuDangCap.Com - Season 6\nMuBaoChau.Com - Season 6")
 
     # Label và Entry để nhập thời gian chờ
     restart_delay_label = Label(root, text="Thời gian chờ giữa các lần khởi động lại (phút):")
