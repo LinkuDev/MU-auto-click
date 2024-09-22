@@ -79,7 +79,7 @@ def login_and_start_game(window, user_id, password, server_index):
         pydirectinput.write(password)
         pydirectinput.press('enter')
 
-        time.sleep(2)
+        time.sleep(4)
         # 5. Chọn nhân vật
         log("Double click chọn nhân vật")
         custom_double_click(window, *position_choose_nhan_vat)
