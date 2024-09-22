@@ -94,7 +94,7 @@ def login_and_start_game(window, user_id, password, server_index):
         time.sleep(2)
         # 6. Click vào auto_play
         log("Mở thùng đồ")
-        pydirectinput.press('esc')
+        pydirectinput.press('v')
 
         time.sleep(3)
         log(f"Hoàn thành đăng nhập và auto đánh nick: {user_id}, pass: {password}, vào server: {server_index}")
