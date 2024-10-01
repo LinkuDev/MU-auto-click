@@ -44,3 +44,8 @@ def custom_double_click(window, rel_x, rel_y):
 # Hàm log để in ra console log
 def log(message):
     print(f"[LOG] {message}")
+
+def long_press(key):
+    pydirectinput.keyDown(key)
+    time.sleep(0.9)
+    pydirectinput.keyUp(key)

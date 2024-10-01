@@ -4,7 +4,7 @@ import time
 
 # Tìm cửa sổ game bằng tiêu đề (chỉnh sửa lại tiêu đề game cho phù hợp)
 game_window = gw.getWindowsWithTitle('MuBaChu.Com - Season 6')[0]
-
+game_window.activate()
 # Lấy tọa độ của cửa sổ game (góc trên cùng bên trái)
 window_x, window_y = game_window.topleft
 
