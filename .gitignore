@@ -1,3 +1,7 @@
 /downloaded_files
 /~
 /__pycache__
+/build
+GUI.exe
+GUI.spec
+main.spec
