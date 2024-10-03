@@ -300,11 +300,18 @@ def start_delay(window_titles, delay):
         # Nếu không bị tạm dừng thì kích hoạt lại giao diện chính và thực hiện click
         if not pause_flag:
             try:
-                # gui_tool = gw.getWindowsWithTitle("MU login")[0]
-                # gui_tool.activate()
-                # log('Click vào nút Delay đăng nhập lại')
-                # custom_click(gui_tool, 328, 421)
-                start_restart(window_titles, delay)
+                windows = []
+                for title in window_titles:
+                    matched_windows = gw.getWindowsWithTitle(title)
+                    if matched_windows:
+                        windows.extend(matched_windows)  # Thêm toàn bộ cửa sổ vào danh sách windows
+                time.sleep((2 + 30)*(len(windows)))
+                gui_tool = gw.getWindowsWithTitle("MU login")[0]
+                gui_tool.activate()
+                time.sleep(1)
+                log('Click vào nút đăng nhập lại')
+                custom_click(gui_tool, 328, 421)
+                # start_restart(window_titles, delay)
             except IndexError:
                 # log("Không tìm thấy cửa sổ 'Mu login'. Sẽ thử lại sau.")
                 continue  # Không dừng vòng lặp mà tiếp tục sau thời gian delay
