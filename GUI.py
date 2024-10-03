@@ -362,7 +362,7 @@ def create_gui():
     # Text area để nhập tên các cửa sổ
     window_text_area = Text(root, height=7, width=50)
     window_text_area.grid(row=1, column=0, padx=5, pady=5, sticky='ew', columnspan=2)  # Kéo dài qua hai cột
-    window_text_area.insert("1.0", "MuBaChu.Com - Season 6\nMuDangCap.Com - Season 6\nMuBaoChau.Com - Season 6")
+    window_text_area.insert("1.0", "MuThienLong.Com - Season 6\nMuDangCap.Com - Season 6\nMuThienDe.Com - Season 6")
 
     # Label và Entry để nhập thời gian chờ
     restart_delay_label = Label(root, text="Thời gian chờ giữa các lần khởi động lại (phút):")
